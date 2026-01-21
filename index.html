@@ -18,17 +18,18 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background-image: url('foto.jpg'); /* Reemplazar por la foto */
-      background-size: cover;
-      background-position: center;
+      background-image: url('foto.jpg'); /* Asegurate que el archivo se llame exactamente foto.jpg */
+      background-size: contain; /* Evita que la imagen se estire y se vea difusa */
+      background-position: center top; /* Mejor encuadre vertical */
       background-repeat: no-repeat;
     }
 
     .overlay {
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0, 0, 0, 0.55);
       padding: 40px 60px;
       border-radius: 12px;
       text-align: center;
+      backdrop-filter: blur(2px); /* mejora legibilidad sin difuminar la imagen */
     }
 
     h1 {
@@ -57,11 +58,30 @@
       color: #ccc;
     }
 
+    .buscon {
+      margin-top: 25px;
+      font-size: 3.2rem;
+      font-weight: 900;
+      letter-spacing: 6px;
+      color: #ff1e1e;
+      text-shadow: 0 0 10px rgba(255, 30, 30, 0.8), 0 0 25px rgba(255, 30, 30, 0.6);
+    }
+
     @media (max-width: 600px) {
       .countdown {
         flex-direction: column;
         gap: 15px;
       }
+
+      .time {
+        font-size: 2.5rem;
+      }
+
+      .buscon {
+        font-size: 2.4rem;
+        letter-spacing: 4px;
+      }
+    }
 
       .time {
         font-size: 2.5rem;
@@ -73,6 +93,10 @@
   <div class="overlay">
     <h1>Falta cada vez menos</h1>
     <div class="countdown">
+      <div class="time-box">
+        <div id="days" class="time">00</div>
+        <div class="label">Días</div>
+      </div>
       <div class="time-box">
         <div id="hours" class="time">00</div>
         <div class="label">Horas</div>
@@ -87,6 +111,17 @@
       </div>
     </div>
   </div>
+      <div class="time-box">
+        <div id="minutes" class="time">00</div>
+        <div class="label">Minutos</div>
+      </div>
+      <div class="time-box">
+        <div id="seconds" class="time">00</div>
+        <div class="label">Segundos</div>
+      </div>
+    </div>
+    <div class="buscon">BUSCON</div>
+  </div>
 
   <script>
     // Fecha objetivo: 6 de febrero de 2026 (hora local del navegador)
@@ -99,10 +134,12 @@
       if (diff < 0) diff = 0;
 
       const totalSeconds = Math.floor(diff / 1000);
-      const hours = Math.floor(totalSeconds / 3600);
+      const days = Math.floor(totalSeconds / 86400);
+      const hours = Math.floor((totalSeconds % 86400) / 3600);
       const minutes = Math.floor((totalSeconds % 3600) / 60);
       const seconds = totalSeconds % 60;
 
+      document.getElementById('days').textContent = String(days).padStart(2, '0');
       document.getElementById('hours').textContent = String(hours).padStart(2, '0');
       document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
       document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');

@@ -16,10 +16,10 @@
       background: #000;
       color: #fff;
       display: flex;
-      align-items: center;
+      align-items: flex-start; /* deja de centrar verticalmente */
       justify-content: center;
       background-image: url('foto.jpg');
-      background-size: 140% auto; /* imagen 40% más ancha */
+      background-size: 100% auto;
       background-position: center top;
       background-repeat: no-repeat;
     }
@@ -30,7 +30,7 @@
       border-radius: 12px;
       text-align: center;
       backdrop-filter: blur(2px);
-      margin-top: 160px; /* baja todo el box */
+      margin-top: 65vh; /* baja el box bien abajo */
     }
 
     h1 {
@@ -80,8 +80,27 @@
 
     @media (max-width: 600px) {
       .overlay {
+        margin-top: 55vh; /* ajuste mobile */
         padding: 30px 25px;
       }
+
+      .countdown {
+        gap: 15px;
+      }
+
+      .time {
+        font-size: 2.3rem;
+      }
+
+      .buscon {
+        font-size: 2.4rem;
+        letter-spacing: 4px;
+      }
+
+      .final-message {
+        font-size: 2.1rem;
+      }
+    }
 
       .countdown {
         gap: 15px;
@@ -174,6 +193,8 @@
   </script>
 </body>
 </html>
+
+
 
 
 

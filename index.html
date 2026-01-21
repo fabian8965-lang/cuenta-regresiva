@@ -19,7 +19,7 @@
       align-items: center;
       justify-content: center;
       background-image: url('foto.jpg');
-      background-size: 80% auto; /* imagen 40% más ancha */
+      background-size: 140% auto; /* imagen 40% más ancha */
       background-position: center top;
       background-repeat: no-repeat;
     }
@@ -30,6 +30,7 @@
       border-radius: 12px;
       text-align: center;
       backdrop-filter: blur(2px);
+      margin-top: 160px; /* baja todo el box */
     }
 
     h1 {
@@ -67,7 +68,14 @@
       letter-spacing: 6px;
       color: #ff1e1e;
       text-align: center;
+      animation: pulse 1.8s infinite;
       text-shadow: 0 0 10px rgba(255, 30, 30, 0.7), 0 0 25px rgba(255, 30, 30, 0.5);
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.08); opacity: 0.85; }
+      100% { transform: scale(1); opacity: 1; }
     }
 
     @media (max-width: 600px) {
@@ -88,6 +96,23 @@
         letter-spacing: 4px;
       }
     }
+  .final-message {
+      display: none;
+      margin-top: 25px;
+      font-size: 2.6rem;
+      font-weight: 900;
+      letter-spacing: 4px;
+      color: #ff2b2b;
+      text-align: center;
+      animation: pulse 1.6s infinite;
+      text-shadow: 0 0 12px rgba(255, 40, 40, 0.9), 0 0 30px rgba(255, 40, 40, 0.7);
+    }
+
+    @media (max-width: 600px) {
+      .overlay { margin-top: 120px; }
+      .final-message { font-size: 2.1rem; }
+    }
+
   </style>
 </head>
 <body>
@@ -113,7 +138,8 @@
       </div>
     </div>
 
-    <div class="buscon">BUSCON</div>
+    <div class="buscon" id="buscon">BUSCON</div>
+    <div class="final-message" id="finalMessage">ANDA DEPILADO QUE TE TOCA</div>
   </div>
 
   <script>
@@ -124,7 +150,12 @@
       const now = new Date();
       let diff = targetDate - now;
 
-      if (diff < 0) diff = 0;
+      if (diff <= 0) {
+        diff = 0;
+        document.querySelector('.countdown').style.display = 'none';
+        document.getElementById('buscon').style.display = 'none';
+        document.getElementById('finalMessage').style.display = 'block';
+      }
 
       const totalSeconds = Math.floor(diff / 1000);
       const days = Math.floor(totalSeconds / 86400);
@@ -143,6 +174,7 @@
   </script>
 </body>
 </html>
+
 
 
 

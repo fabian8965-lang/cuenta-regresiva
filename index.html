@@ -18,9 +18,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background-image: url('foto.jpg'); /* Asegurate que el archivo se llame exactamente foto.jpg */
-      background-size: contain; /* Evita que la imagen se estire y se vea difusa */
-      background-position: center top; /* Mejor encuadre vertical */
+      background-image: url('foto.jpg');
+      background-size: 140% auto; /* imagen 40% más ancha */
+      background-position: center top;
       background-repeat: no-repeat;
     }
 
@@ -29,7 +29,7 @@
       padding: 40px 60px;
       border-radius: 12px;
       text-align: center;
-      backdrop-filter: blur(2px); /* mejora legibilidad sin difuminar la imagen */
+      backdrop-filter: blur(2px);
     }
 
     h1 {
@@ -41,10 +41,12 @@
       display: flex;
       gap: 25px;
       justify-content: center;
+      flex-wrap: wrap;
     }
 
     .time-box {
       text-align: center;
+      min-width: 90px;
     }
 
     .time {
@@ -59,22 +61,26 @@
     }
 
     .buscon {
-      margin-top: 25px;
+      margin-top: 22px;
       font-size: 3.2rem;
       font-weight: 900;
       letter-spacing: 6px;
       color: #ff1e1e;
-      text-shadow: 0 0 10px rgba(255, 30, 30, 0.8), 0 0 25px rgba(255, 30, 30, 0.6);
+      text-align: center;
+      text-shadow: 0 0 10px rgba(255, 30, 30, 0.7), 0 0 25px rgba(255, 30, 30, 0.5);
     }
 
     @media (max-width: 600px) {
+      .overlay {
+        padding: 30px 25px;
+      }
+
       .countdown {
-        flex-direction: column;
         gap: 15px;
       }
 
       .time {
-        font-size: 2.5rem;
+        font-size: 2.3rem;
       }
 
       .buscon {
@@ -82,16 +88,12 @@
         letter-spacing: 4px;
       }
     }
-
-      .time {
-        font-size: 2.5rem;
-      }
-    }
   </style>
 </head>
 <body>
   <div class="overlay">
     <h1>Falta cada vez menos</h1>
+
     <div class="countdown">
       <div class="time-box">
         <div id="days" class="time">00</div>
@@ -110,7 +112,7 @@
         <div class="label">Segundos</div>
       </div>
     </div>
-  </div>
+
     <div class="buscon">BUSCON</div>
   </div>
 
@@ -141,4 +143,3 @@
   </script>
 </body>
 </html>
-
